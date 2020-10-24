@@ -5,15 +5,12 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -33,11 +30,8 @@ public class Cliente extends CreateId {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Endereco endereco;
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "telefones")
-	@JsonInclude(Include.NON_NULL)
 	private List<Telefone> telefones;
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "emails")
 	private List<Email> emails;
 	
 	

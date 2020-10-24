@@ -1,0 +1,194 @@
+<div>
+  <div>
+    <div
+      class="container shadow p-3 mb-5 bg-white rounded"
+      style="margin-top: 70px"
+    >
+      <form [formGroup]="form">
+        <div class="row">
+          <div class="col-1"></div>
+          <div class="form-group col">
+            <label>Nome</label>
+            <input
+              type="text"
+              class="form-control text-center"
+              placeholder="NOME"
+              formControlName="nome"
+            />
+          </div>
+          <div class="form-group col">
+            <label>CPF</label>
+            <input
+              type="number"
+              class="form-control text-center"
+              placeholder="CPF"
+              formControlName="cpf"
+            />
+          </div>
+          <div class="col-1"></div>
+        </div>
+        <form [formGroup]="formEndereco">
+          <div class="row">
+            <div style="margin-top: 34px;" class="form-group col-2 text-center">
+              <button
+                class="btn btn-success btn-sm btn-block text-center"
+                (click)="buscarCep()"
+              >
+                Buscar CEP
+              </button>
+            </div>
+            <div style="margin-top: 32px;" class="form-group col-4 text-left">
+              <input
+                type="number"
+                class="form-control text-center"
+                placeholder="CEP"
+                formControlName="cep"
+              />
+            </div>
+            <div class="form-group col-6">
+              <label>Logradouro</label>
+              <input
+                type="text"
+                class="form-control text-center"
+                placeholder="LOGRADOURO"
+                formControlName="logradouro"
+                [(ngModel)]="endereco.logradouro"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-4">
+              <label>Bairro</label>
+              <input
+                type="text"
+                class="form-control text-center"
+                placeholder="BAIRRO"
+                formControlName="bairro"
+                [(ngModel)]="endereco.bairro"
+              />
+            </div>
+            <div class="form-group col-4">
+              <label>Cidade</label>
+              <input
+                type="text"
+                class="form-control text-center"
+                placeholder="CIDADE"
+                formControlName="localidade"
+                [(ngModel)]="endereco.localidade"
+              />
+            </div>
+
+            <div class="form-group col-4">
+              <label>Complemento</label>
+              <input
+                type="text"
+                class="form-control text-center"
+                placeholder="COMPLEMENTO"
+                formControlName="complemento"
+                [(ngModel)]="endereco.complemento"
+              />
+            </div>
+          </div>
+        </form>
+        <div class="">
+          <div
+            formArrayName="telefones"
+            *ngFor="let cliente of telefones.controls; let i = index"
+          >
+            <hr />
+            <fieldset [formGroupName]="i">
+              <legend class="d-flex justify-content-between capitalize">
+                <div class="text-left">
+                  <button
+                    (click)="removeTelefone(i)"
+                    class="btn btn-sm btn-danger"
+                  >
+                    Remover Telefone
+                  </button>
+                </div>
+                <div class="row">
+
+                  <div class="form-group col-3">
+                    <label>DDD</label>
+                    <input
+                      type="text"
+                      class="form-control text-center"
+                      placeholder="DDD"
+                      formControlName="ddd"
+                      required
+                    />
+                  </div>
+                  <div class="form-group col-4">
+                    <label>Telefone</label>
+                    <input
+                      type="number"
+                      class="form-control text-center"
+                      placeholder="TELEFONE"
+                      formControlName="numero"
+                    />
+                  </div>
+                  <div class="form-group col-5">
+                    <label>Tipo</label>
+                    <select
+                      class="form-control text-center"
+                      formControlName="tipo"
+                    >
+                      <option value="2">CELULAR</option>
+                      <option value="0">RESIDENCIAL</option>
+                      <option value="1">COMERCIAL</option>
+                    </select>
+                  </div>
+                </div>
+              </legend>
+            </fieldset>
+          </div>
+
+          <div class="text-left">
+            <button
+              (click)="adicionarTelefone()"
+              class="btn btn-sm btn-success"
+            >
+              Novo Telelefone
+            </button>
+          </div>
+          <hr />
+        </div>
+        <div >
+          <div formArrayName="emails" *ngFor="let cliente of emails.controls; let j = index;">
+          <fieldset [formGroupName]="j">
+            <legend>
+              <div class="text-right">
+              <button class="btn btn-sm btn-danger" (click)="removerEmail(j)">Remover Email</button>
+              </div>
+              <div class="row">
+                <div class="col-3"></div>
+                <div class="form-group col">
+                  <label>Email</label>
+                  <input
+                    type="email"
+                    class="form-control text-center"
+                    placeholder="E-MAIL"
+                    formControlName="email"
+                  />
+                </div>
+                <div class="col-3"></div>
+              </div>
+              <hr>
+            </legend>
+          </fieldset>
+        </div>
+
+        <div class="col text-right">
+          <button class="btn btn-sm btn-success" (click)="adicionarEmail()">Novo Email</button>
+        </div>
+        </div>
+
+        <div >
+          <button class="btn btn-success" (click)="salvarAlteracao()">
+            Salvar Alteracao
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

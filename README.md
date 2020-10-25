@@ -2,6 +2,8 @@
 # desafio-front --> APLICACAO FRON-END
 
 
+# USUARIOS COMUM { Nome: Usuario , Senha: 123456 }
+# USUARIOS ADMIN { Nome: Administrador , Senha: 123456 }
 
 
 # APLICACAO BACK-END

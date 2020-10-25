@@ -26,7 +26,7 @@ export class NavComponent implements OnInit {
     localStorage.removeItem('username');
     localStorage.removeItem('password');
     localStorage.removeItem('role');
-    this.toastr.show('Deslogado');
+    this.toastr.info('Deslogado');
 
     this.router.navigate(['/login']);
   }

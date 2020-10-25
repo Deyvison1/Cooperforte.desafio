@@ -47,7 +47,6 @@ export class GerenciarComponent implements OnInit {
   detalhes(modal: any, cliente: Cliente) {
     this.abrirModal(modal);
     this.cliente = cliente;
-    console.log(this.cliente);
   }
 
   buscarTodosClientes() {

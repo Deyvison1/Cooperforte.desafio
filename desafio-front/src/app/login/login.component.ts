@@ -29,15 +29,15 @@ export class LoginComponent implements OnInit {
   }
 
   logar() {
-    if(this.modelEntity.username == 'Administrador' && this.modelEntity.password == '5225')
+    if(this.modelEntity.username == 'Administrador' && this.modelEntity.password == '123456')
     {
       localStorage.setItem('username', 'Administrador');
-      localStorage.setItem('password', '5225');
+      localStorage.setItem('password', '123456');
       localStorage.setItem('role', 'ADMIN');
       this.router.navigate(['/cliente/gerenciar']);
-    } else if(this.modelEntity.username == 'Usuario' && this.modelEntity.password == '1234') {
+    } else if(this.modelEntity.username == 'Usuario' && this.modelEntity.password == '123456') {
       localStorage.setItem('username', 'Usuario');
-      localStorage.setItem('password', '1234');
+      localStorage.setItem('password', '123456');
       localStorage.setItem('role', 'USUARIO');
       this.router.navigate(['/cliente/gerenciar']);
     } else {

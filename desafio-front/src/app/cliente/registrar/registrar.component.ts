@@ -45,9 +45,15 @@ export class RegistrarComponent implements OnInit {
     this.clienteService.enderecoByCep(this.endereco.cep).subscribe(
       (endereco: Endereco) => {
         this.endereco = endereco;
+        
+        if(this.endereco.bairro == null) {
+          this.toastr.error('Cep Invalido');
+          return;
+        }
+
         let cep = this.endereco.cep.replace('-', '');
         this.endereco.cep = cep;
-      }, error => { console.log(error); }
+      }, error => { this.toastr.error('Cep Invalido'); }
     )
   }
 

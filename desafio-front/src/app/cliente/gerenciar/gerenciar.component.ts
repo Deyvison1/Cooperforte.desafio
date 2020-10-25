@@ -1,4 +1,6 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Cliente } from 'src/app/models/Cliente';
 import { Endereco } from 'src/app/models/Endereco';
@@ -17,11 +19,16 @@ export class GerenciarComponent implements OnInit {
   
   constructor(
     private clienteService: ClienteService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    public router: Router
   ) { }
 
   ngOnInit() {
     this.buscarTodosClientes();
+  }
+
+  pegarRole() {
+    return localStorage.getItem('role');
   }
 
   abrirModal(modal: any) {
@@ -44,10 +51,13 @@ export class GerenciarComponent implements OnInit {
   }
 
   buscarTodosClientes() {
+
     this.clienteService.buscarTodos().subscribe(
       (clientes: Cliente[]) => {
         this.clientes = clientes;
-      }, error => { console.log(error); }
+      }, error => { 
+        this.toastr.error(error.messageTemplate)
+      }
     );
   }
 

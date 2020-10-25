@@ -7,15 +7,16 @@
         <tr>
           <th>Nome</th>
           <th>CPF</th>
-          <th>Ações</th>
+          <th>Ações
+          </th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let cliente of clientes">
           <td>{{ cliente.nome | titlecase }}</td>
-          <td>{{ cliente.cpf }}</td>
+          <td>{{ cliente.cpf | mask: '000.000.000-00' }}</td>
           <td>
-            <button class="btn btn-danger" (click)="excluir(cliente)">Excluir</button>
+            <button [disabled]="pegarRole() == 'USUARIO'" class="btn btn-danger" (click)="excluir(cliente)">Excluir</button>
             <button class="btn btn-info" (click)="detalhes(modalDetalhes,cliente)">Detalhes</button>
           </td>
         </tr>
@@ -48,7 +49,7 @@
               </thead>
               <tbody *ngFor="let telefone of cliente.telefones">
                 <tr>
-                  <td>{{ telefone.ddd | mask: '000' }}</td>
+                  <td>{{ telefone.ddd | mask: '(00)' }}</td>
                   <td>{{ telefone.numero | mask: '00000-0000' }}</td>
                   <td>
                     {{ telefone.tipo }}

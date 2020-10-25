@@ -34,12 +34,14 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('username', 'Administrador');
       localStorage.setItem('password', '5225');
       localStorage.setItem('role', 'ADMIN');
+      this.router.navigate(['/cliente/gerenciar']);
     } else if(this.modelEntity.username == 'Usuario' && this.modelEntity.password == '1234') {
       localStorage.setItem('username', 'Usuario');
       localStorage.setItem('password', '1234');
       localStorage.setItem('role', 'USUARIO');
+      this.router.navigate(['/cliente/gerenciar']);
     } else {
-      console.log('Error');
+      this.toastr.error('Credenciais invalidadas');
       return;
     }
     this.toastr.success('Logado');

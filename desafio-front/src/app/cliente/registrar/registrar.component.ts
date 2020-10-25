@@ -29,7 +29,7 @@ export class RegistrarComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router,
+    public router: Router,
     private clienteService: ClienteService,
     private toastr: ToastrService
   ) { }
@@ -45,6 +45,8 @@ export class RegistrarComponent implements OnInit {
     this.clienteService.enderecoByCep(this.endereco.cep).subscribe(
       (endereco: Endereco) => {
         this.endereco = endereco;
+        let cep = this.endereco.cep.replace('-', '');
+        this.endereco.cep = cep;
       }, error => { console.log(error); }
     )
   }
@@ -52,7 +54,7 @@ export class RegistrarComponent implements OnInit {
   criarEmail(email: any): FormGroup {
     return this.fb.group({
       id: [email.id],
-      email: [email.email]
+      email: [email.email, Validators.required]
     });
   }
 
@@ -63,8 +65,8 @@ export class RegistrarComponent implements OnInit {
   criarTelefone(telefone: any): FormGroup {
     return this.fb.group({
       id: [telefone.id],
-      ddd: [telefone.ddd, [Validators.max(999), Validators.min(99)]],
-      numero: [telefone.numero],
+      ddd: [telefone.ddd, [Validators.required]],
+      numero: [telefone.numero, [Validators.required]],
       tipo: [telefone.tipo]
     });
   }
@@ -93,25 +95,28 @@ export class RegistrarComponent implements OnInit {
       (cliente: Cliente) => {
         this.toastr.success('Sucesso');
         this.router.navigate(['/cliente/gerenciar']);
-      }, error => { this.toastr.error('Error na solicitacao'); }
+      }, error => { 
+        this.toastr.error('Error'); 
+      }
     );
   }
 
   validationEndereco() {
     this.formEndereco = this.fb.group({
       id: [''],
-      cep: [''],
-      bairro: [''],
-      logradouro: [''],
+      cep: ['', [Validators.maxLength(9), Validators.minLength(8)]],
+      bairro: ['', [Validators.required]],
+      uf: ['', [Validators.required]],
+      logradouro: ['', [Validators.required]],
       complemento: [''],
-      localidade: ['']
+      localidade: ['', [Validators.required]]
     });
   }
   
   validation() {
     this.form = this.fb.group({
-      nome: [''],
-      cpf: [''],
+      nome: ['', [Validators.required]],
+      cpf: ['', [Validators.required]],
       telefones: this.fb.array([]),
       emails: this.fb.array([])
     });

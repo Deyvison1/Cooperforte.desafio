@@ -2,6 +2,8 @@ package com.desafio.desafio.services;
 
 import java.util.List;
 
+import javax.validation.ConstraintViolationException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,7 @@ public class ClienteService {
 	private IClienteRepository repoCliente;
 	
 	// Metodo Adicionar Cliente
-	public Cliente adicionar(Cliente cliente) {		
+	public Cliente adicionar(Cliente cliente) throws ConstraintViolationException {		
 		return repoCliente.save(cliente);
 	}
 	

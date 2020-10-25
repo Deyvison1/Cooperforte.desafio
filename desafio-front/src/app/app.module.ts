@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule , FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from '@angular/common/http';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +29,9 @@ import { GerenciarComponent } from './cliente/gerenciar/gerenciar.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxMaskModule.forRoot(),
+    ModalModule.forRoot(),
+    TabsModule.forRoot(),
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: "toast-top-right",

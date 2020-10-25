@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Cliente } from 'src/app/models/Cliente';
 import { Endereco } from 'src/app/models/Endereco';
 import { ClienteService } from 'src/app/services/cliente.service';
@@ -27,7 +29,9 @@ export class RegistrarComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private clienteService: ClienteService
+    private router: Router,
+    private clienteService: ClienteService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -41,7 +45,6 @@ export class RegistrarComponent implements OnInit {
     this.clienteService.enderecoByCep(this.endereco.cep).subscribe(
       (endereco: Endereco) => {
         this.endereco = endereco;
-        console.log(this.endereco);
       }, error => { console.log(error); }
     )
   }
@@ -71,17 +74,27 @@ export class RegistrarComponent implements OnInit {
   }
 
   adicionarEmail() {
-    this.emails.push(this.criarEmail({ id: 0 }));
+    this.emails.push(this.criarEmail({  }));
   }
 
   adicionarTelefone() {
-    this.telefones.push(this.criarTelefone({ id: 0 }))
+    this.telefones.push(this.criarTelefone({  }))
   }
 
   salvarAlteracao() {
-    this.cliente = Object.assign({}, this.form.value);
-    this.cliente.endereco = this.formEndereco.value;
-    console.log(this.cliente);
+    this.cliente = Object.assign({},this.form.value);
+    this.cliente.endereco = this.endereco;
+
+    this.cliente.telefones.forEach(x => x.id == null);
+    this.cliente.emails.forEach(x => x.id == null);
+
+
+    this.clienteService.adicionar(this.cliente).subscribe(
+      (cliente: Cliente) => {
+        this.toastr.success('Sucesso');
+        this.router.navigate(['/cliente/gerenciar']);
+      }, error => { this.toastr.error('Error na solicitacao'); }
+    );
   }
 
   validationEndereco() {

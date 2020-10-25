@@ -18,8 +18,6 @@ import lombok.Setter;
 public class Telefone extends CreateId {
 
 	@NotNull(message = "Campo obrigatorio")
-	@Min(value = 2, message = "Minimo de numeros sao 2")
-	@Max(value = 3, message= "Maximo de numero sao 3")
 	private int ddd;
 	@NotNull(message = "Campo obrigatorio")
 	private String numero;

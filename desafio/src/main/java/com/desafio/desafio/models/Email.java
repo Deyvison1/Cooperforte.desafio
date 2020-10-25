@@ -14,6 +14,7 @@ import lombok.Setter;
 @Entity
 public class Email extends CreateId {
 	
+	
 	@NotNull(message = "Campo obrigatorio")
 	private String email;
 	

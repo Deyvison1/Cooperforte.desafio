@@ -28,7 +28,7 @@ public class Endereco extends CreateId {
 	@NotNull(message = "Campo obrigatorio")
 	private String bairro;
 	@NotNull(message = "Campo obrigatorio")
-	private String cidade;
+	private String localidade;
 	@NotNull(message = "Campo obrigatorio")
 	private EnumUF uf;
 	

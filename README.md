@@ -9,7 +9,7 @@
 # APLICACAO BACK-END
 
 # Projeto inciado ao criar a aplicacao spring com suas devidas dependencias ( Jpa, H2DataBase, SpringWeb, SpringDevTools, SpringSecurity )
-# com o git de o comando 'git clone https://github.com/Deyvison1/coda.project.api.git'
+# com o git de o comando 'git clone https://github.com/Deyvison1/Cooperforte.desafio'
 # entre na pasta do projeto e digite 'mvn package'
 # digite o comando no terminal 'mvn package -DskipTestes -T(n de preocessadores/threads)'
 # digite 'nomeProjeto mvn spring-boot:run'
@@ -22,7 +22,6 @@
 
 # VERSAO DO ANGULAR USAD	A 7.2.2
 # COMANDO DE INSTALACAO DO ANGULAR 'npm i -g @angular/cli@7.2.2'
-# com git digite o comando 'git clone https://github.com/Deyvison1/coda.project.app.git'
 # entre na pasta do projeto e digite no terminal 'npm i'
 # dentro a pasta do projeto digite no terminal 'ng serve' para executar a aplicacao do front-end
 # abrir o navegador na porta 'localhost:4200'

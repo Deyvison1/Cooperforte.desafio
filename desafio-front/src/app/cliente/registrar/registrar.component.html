@@ -14,8 +14,39 @@
               class="form-control text-center"
               placeholder="NOME"
               formControlName="nome"
-              required
+              [ngClass]="{
+                'is-invalid':
+                  form.get('nome').errors && form.get('nome').touched
+              }"
             />
+
+            <div
+              *ngIf="
+                form.get('nome').hasError('required') &&
+                form.get('nome').touched
+              "
+              class="invalid-feedback"
+            >
+              Campo Obrigatório
+            </div>
+            <div
+              *ngIf="
+                form.get('nome').hasError('maxlength') &&
+                form.get('nome').touched
+              "
+              class="invalid-feedback"
+            >
+              Campo deve ter no maximo 100 caracteres
+            </div>
+            <div
+              *ngIf="
+                form.get('nome').hasError('minlength') &&
+                form.get('nome').touched
+              "
+              class="invalid-feedback"
+            >
+              Campo deve ter no minimo 3 caracteres
+            </div>
           </div>
           <div class="form-group col">
             <label>CPF</label>
@@ -26,7 +57,20 @@
               formControlName="cpf"
               [(ngModel)]="cliente.cpf"
               mask="000.000.000-00"
+              [ngClass]="{
+                'is-invalid':
+                  form.get('cpf').errors && form.get('cpf').touched
+              }"
             />
+            <div
+              *ngIf="
+                form.get('cpf').hasError('required') &&
+                form.get('cpf').touched
+              "
+              class="invalid-feedback"
+            >
+              Campo Obrigatório
+            </div>
           </div>
           <div class="col-1"></div>
         </div>
@@ -119,7 +163,6 @@
                       class="form-control text-center"
                       placeholder="011"
                       formControlName="ddd"
-                      required
                       mask="(000)"
                     />
                   </div>

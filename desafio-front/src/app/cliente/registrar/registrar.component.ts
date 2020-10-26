@@ -37,6 +37,12 @@ export class RegistrarComponent implements OnInit {
   ngOnInit() {
     this.validationEndereco();
     this.validation();
+    this.povoarTelefoneAndEmail();
+  }
+
+  povoarTelefoneAndEmail() {
+    this.telefones.push(this.criarTelefone({}));
+    this.emails.push(this.criarEmail({}));
   }
 
   buscarCep() {
@@ -121,7 +127,7 @@ export class RegistrarComponent implements OnInit {
   
   validation() {
     this.form = this.fb.group({
-      nome: ['', [Validators.required]],
+      nome: ['', [Validators.required, Validators.maxLength(100), Validators.minLength(3)]],
       cpf: ['', [Validators.required]],
       telefones: this.fb.array([]),
       emails: this.fb.array([])
